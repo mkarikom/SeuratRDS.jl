@@ -1,0 +1,13 @@
+name = "SeuratRDS"
+uuid = "dc2ff7d6-b19f-434a-a8eb-f50e20111c56"
+authors = ["Matt Karikomi <mattkarikomi@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
