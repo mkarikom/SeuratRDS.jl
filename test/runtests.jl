@@ -11,7 +11,7 @@ checkfn = joinpath(dn,"dataSeur.csv")
     assay = "data"
     metadata = "nCount_RNA"
 
-    env = initR()
+    env = initR() # make the env
 
     @test Conda.channels(env) == ["r","defaults"]
 
