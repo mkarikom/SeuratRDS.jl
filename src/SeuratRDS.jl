@@ -10,10 +10,6 @@ export initR,loadSeur,closeR
 
 # install r to a temp path and return the path
 function initR()
-    currentfn = split(@__FILE__,"/")[end]
-    drnm = string(@__DIR__, "/output/", split(currentfn,".")[1], "/")
-    mkpath(drnm)
-
     # make a new temporary conda environment for r
     ts = Dates.time()
     tdir = "/tmp/r$ts"
