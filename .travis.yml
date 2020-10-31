@@ -22,7 +22,7 @@ jobs:
       os: osx
   include:
     - stage: Documentation
-      julia: 1.5
+      julia: 1
       script: |
         julia --project=docs -e '
           using Pkg
