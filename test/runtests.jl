@@ -1,6 +1,7 @@
-using Revise, Test
-using CSV
+using Test
+using DelimitedFiles
 using SeuratRDS
+using Conda
 
 dn = joinpath(@__DIR__,"data")
 testfn = joinpath(dn,"testSeur.rds")
@@ -15,9 +16,9 @@ checkfn = joinpath(dn,"dataSeur.csv")
     @test Conda.channels(env) == ["r","defaults"]
 
     dat = loadSeur(testfn,env,modality,assay,metadata)
-    check = CSV.read(checkfn)
+    check,ccols = readdlm(checkfn,header=true)
 
-    @test Matrix(check) == dat.dat
+    @test check == dat.dat
 
     closeR(env)
     @test !isdir(env)

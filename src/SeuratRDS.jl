@@ -5,6 +5,7 @@ using Pkg
 using Conda
 using Dates
 using RCall
+using DelimitedFiles
 
 export initR,loadSeur,closeR
 
