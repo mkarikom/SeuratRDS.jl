@@ -4,34 +4,18 @@ module SeuratRDS
 using Pkg
 using Conda
 using Dates
-using RCall
 using DelimitedFiles
 using DataFrames
 
-export initR,loadSeur,closeR
+ENV["R_HOME"]="*";Pkg.build("RCall");using RCall # make sure we have a good r environment
 
-# install r to a temp path and return the path
-# install r to a temp path and return the path
-function initR()
-    # make a new temporary conda environment for r
-    ts = Dates.time()
-    tdir = "/tmp/r$ts"
-    mkpath(tdir)
-    run(`conda create -p $tdir -y`)
+Conda.add("r-matrix",joinpath("/",split(RCall.libR,"/")[2:end-4]...)) # make sure Matrix is in the new conda env
 
-    # install r in the temp environment
-    Conda.add_channel("r",tdir)
-    Conda.add("r-base>=3.4.0,<4",tdir) # greater than or equal to 3.4.0 AND strictly less than 4.0
-    Conda.add("r-matrix",tdir) # greater than or equal to 3.4.0 AND strictly less than 4.0
 
-    # ENV["R_HOME"] = tdir
-    # Pkg.build("RCall")
-    return(tdir)
-end
+export loadSeur
 
 # return features x barcodes data as tuple with data matrix, metadata, colnames, rownames, dataframe representation
-function loadSeur(rdsPath::String,envPath::String,
-              modality::String,assay::String,metadata::String)
+function loadSeur(rdsPath::String,modality::String,assay::String,metadata::String)
     R"""
       rdsPath = $rdsPath;
       seur = readRDS(rdsPath);"""; # read in annotations
@@ -68,17 +52,13 @@ function bcFeatLabels(seurData::NamedTuple,labels::Vector)
   df
 end
 
-# remove the repository
-function closeR(envPath::String)
-  run(`conda env remove -p $envPath`)
-end
-
 # return barcodes x features data where the metadata::Dict includes extra features like:
 # :featurename => metadata, where metadata corresponds to get(metadata,slot(seur,"meta.data"))
-function loadSeur(rdsPath::String,envPath::String,
+function loadSeur(rdsPath::String,
                   modality::String,assay::String,
                   metadata::Dict)
     R"""
+      library(Matrix)
       rdsPath = $rdsPath;
       seur = readRDS(rdsPath);
       modality = $modality;
