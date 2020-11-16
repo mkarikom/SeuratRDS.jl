@@ -2,6 +2,7 @@ name = "SeuratRDS"
 uuid = "dc2ff7d6-b19f-434a-a8eb-f50e20111c56"
 authors = ["Matt Karikomi <mattkarikomi@gmail.com> and contributors"]
 version = "1.0.0"
+repo = "https://github.com/mkarikom/SeuratRDS.jl.git"
 
 [deps]
 Conda = "8f4d0f93-b110-5947-807f-2305c1781a2d"
