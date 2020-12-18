@@ -22,3 +22,27 @@ docs/site/
 # committed for packages, but should be committed for applications that require a static
 # environment.
 Manifest.toml
+.Rproj.user
+
+# directories with lots of data
+triples/
+bigdata/
+#local/gcom/output/GCom_Data_Notch/
+
+## r files
+.Rproj
+
+ 
+# vs code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# dev julia pkgs
+#dev/
