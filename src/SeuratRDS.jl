@@ -5,6 +5,7 @@ using Pkg
 using Dates
 using DelimitedFiles
 using DataFrames
+using RCall
 
 # ensure that Matrix is installed for R
 
