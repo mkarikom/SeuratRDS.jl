@@ -2,15 +2,13 @@
 module SeuratRDS
 
 using Pkg
-using Conda
 using Dates
 using DelimitedFiles
 using DataFrames
 
 ENV["R_HOME"]="*";Pkg.build("RCall");using RCall # make sure we have a good r environment
 
-Conda.add("r-matrix",joinpath("/",split(RCall.libR,"/")[2:end-4]...)) # make sure Matrix is in the new conda env
-
+# ensure that Matrix is installed for R
 
 export loadSeur
 
