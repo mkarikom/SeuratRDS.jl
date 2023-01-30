@@ -6,8 +6,6 @@ using Dates
 using DelimitedFiles
 using DataFrames
 
-ENV["R_HOME"]="*";Pkg.build("RCall");using RCall # make sure we have a good r environment
-
 # ensure that Matrix is installed for R
 
 export loadSeur
