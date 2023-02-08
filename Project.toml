@@ -13,7 +13,7 @@ RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
 
 [compat]
 DataFrames = "~1"
-RCall = "~0"
+RCall = "~0.13"
 julia = "~1"
 
 [extras]
