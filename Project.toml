@@ -2,7 +2,7 @@ name = "SeuratRDS"
 uuid = "dc2ff7d6-b19f-434a-a8eb-f50e20111c56"
 authors = ["Matt Karikomi <mattkarikomi@gmail.com> and contributors"]
 repo = "https://github.com/mkarikom/SeuratRDS.jl.git"
-version = "1.0.1"
+version = "1.0.2"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
@@ -12,9 +12,9 @@ Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
 
 [compat]
-DataFrames = "0.21, 0.22"
-RCall = "0.13"
-julia = "1.5"
+DataFrames = "~1"
+RCall = "~0"
+julia = "~1"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
