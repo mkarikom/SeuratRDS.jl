@@ -65,14 +65,12 @@ function loadSeur(rdsPath::String,
       cnm = colnames(dat);
       rnm = rownames(dat);"""; # read in annotations
 
-    dat = rcopy(R"as.matrix(dat)")
+    df = rcopy(R"data.frame(as.matrix(dat))")
     cnm = rcopy(R"as.matrix(cnm)")
     rnm = rcopy(R"as.matrix(rnm)")
-
-    df = DataFrame(dat')
-    rename!(df,Symbol.(reduce(vcat,rnm)))
-    insertcols!(df,1,(:barcode=>reduce(vcat,cnm)))
-
+    insertcols!(df,1,(:gene=>reduce(vcat,rnm)))
+    df = permutedims(df, 1,:barcode)
+    
     # export counts and embedded labels
     for k in keys(metadata)
       seurkey = get(metadata,k,"")
